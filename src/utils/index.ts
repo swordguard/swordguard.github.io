@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { FEEDBACK_ENDPOINT } from '../constants/constants'
 
 export const onFirstNameChange = (e: any, setFirstName: any) => {
     setFirstName(e.target.value)
@@ -17,13 +18,15 @@ export const onCommentsChange = (e: any, setFirstName: any) => {
 }
 
 export const handleSubmit = (formData: any, setToastOpen: any, setSubmitSuccess: any, 
-    setPosting: any, {formErrors, setFormErrors}: any,e: any) => {
+    setPosting: any, {formErrors, setFormErrors}: any,
+    setValidationMsg:any, e: any) => {
        if(!validateForm({formData, formErrors, setFormErrors})) {
         return
        }
   e.preventDefault()
     setPosting(true)
-  axios.post('http://localhost:4000/feedbacks', formData)
+  axios.post(FEEDBACK_ENDPOINT, formData)
+//   axios.post('https://ms-website-api.herokuapp.com/feedback', formData)
   .then(() => {
       setPosting(false)
       setToastOpen(true)
@@ -33,6 +36,7 @@ export const handleSubmit = (formData: any, setToastOpen: any, setSubmitSuccess:
       setPosting(false)
       setToastOpen(true)
       setSubmitSuccess(false)
+      setValidationMsg(err.response.data)
   })
 }
 
@@ -48,7 +52,6 @@ export const validateForm = ({formData, formErrors, setFormErrors}: any): boolea
         return newError
     }, {...formErrors})
 
-    console.log(formData,formErrors, newErrors)
     if (newErrors && Object.values(newErrors)?.length) {
         setFormErrors(newErrors)
         return false

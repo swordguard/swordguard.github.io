@@ -31,6 +31,7 @@ export default function SignIn() {
   const [posting, setPosting] = useState(false)
   const [openToast, setOpenToast] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState()
+  const [validationMsg, setValidationMsg] = useState()
   const [formErrors, setFormErrors] = useState({
     firstName: '',
     lastName: '',
@@ -47,7 +48,6 @@ const formData = {
 }
 
   useEffect(() => {
-    console.log('in useEffect', firstName)
     !vergin && validateForm({formData, formErrors, setFormErrors})
   }, [firstName, lastName, email, comments])
 
@@ -59,7 +59,7 @@ const formData = {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Toast openToast={openToast} setOpenToast={setOpenToast} success={submitSuccess}/>
+        <Toast openToast={openToast} setOpenToast={setOpenToast} success={submitSuccess} message={validationMsg}/>
         <Box
           sx={{
             marginTop: 8,
@@ -132,7 +132,7 @@ const formData = {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               disabled={posting}
-              onClick={(e) => handleSubmit(formData, setOpenToast, setSubmitSuccess, setPosting, {formErrors, setFormErrors}, e)}
+              onClick={(e) => handleSubmit(formData, setOpenToast, setSubmitSuccess, setPosting, {formErrors, setFormErrors}, setValidationMsg,e)}
             >
               Submit
             </Button>
