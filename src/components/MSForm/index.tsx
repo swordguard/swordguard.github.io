@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -6,7 +6,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import AddCommentIcon from '@mui/icons-material/AddComment';
-import {onFirstNameChange, onLastNameChange,onEmailChange,onCommentsChange, handleSubmit, validateForm} from '../../utils'
+import {
+    onFirstNameChange, 
+    onFirstNameBlur,
+    onLastNameChange,onEmailChange,onCommentsChange, handleSubmit} from '../../utils'
 import Toast from '../Toast'
 
 export default function MSForm() {
@@ -24,22 +27,13 @@ export default function MSForm() {
     email: '',
     comments: ''
   })
-  const [vergin, setVergin] = useState(true)
 
 const formData = {
-    firstName,
-        lastName,
-        email,
-        comments
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    comments: comments
 }
-
-  useEffect(() => {
-    !vergin && validateForm({formData, formErrors, setFormErrors})
-  }, [firstName, lastName, email, comments])
-
-  useEffect(() => {
-    setVergin(false)
-  }, [])
 
   return (
       <Container component="main" maxWidth="xs">
@@ -66,6 +60,7 @@ const formData = {
               label="Frist Name"
               name="firstName"
               onChange={(e) => onFirstNameChange(e, setFirstName)}
+              onBlur={() => onFirstNameBlur(formData,formErrors, setFormErrors)}
               value={firstName}
               error={Boolean(formErrors.firstName)}
               helperText={formErrors.firstName}
@@ -79,6 +74,7 @@ const formData = {
               name="lastName"
               value={lastName}
               onChange={(e) => onLastNameChange(e, setLastName)}
+              onBlur={() => onFirstNameBlur(formData,formErrors, setFormErrors)}
               error={Boolean(formErrors.lastName)}
               helperText={formErrors.lastName}
             />
@@ -92,6 +88,7 @@ const formData = {
               autoComplete="email"
               value={email}
               onChange={(e) => onEmailChange(e, setEmail)}
+              onBlur={() => onFirstNameBlur(formData,formErrors, setFormErrors)}
               error={Boolean(formErrors.email)}
               helperText={formErrors.email}
             />
@@ -106,6 +103,7 @@ const formData = {
                 maxRows={6}
                 value={comments}
                 onChange={(e) => onCommentsChange(e, setComments)}
+                onBlur={() => onFirstNameBlur(formData,formErrors, setFormErrors)}
                 error={Boolean(formErrors.comments)}
                 helperText={formErrors.comments}
                 />

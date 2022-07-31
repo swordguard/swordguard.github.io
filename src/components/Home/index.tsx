@@ -1,5 +1,6 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -36,19 +37,19 @@ function Copyright(props: any) {
         id: 1,
         image: 'https://images.unsplash.com/photo-1657517120264-efff2a7e8af0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTI2MTk5OA&ixlib=rb-1.2.1&q=80&w=1080',
         heading: 'Agility',
-        content: 'We\'re agile and ambitious.',
+        content: 'We\'re small but agile and ambitious.',
     },
     {
         id: 2,
         image: 'https://images.unsplash.com/photo-1658781303736-e95b8db69bb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTI2MTg5Mw&ixlib=rb-1.2.1&q=80&w=1080',
         heading: 'Atitude',
-        content: 'Landing on the moon was achieved, and building a web app is a breeze.'
+        content: 'Landing on the moon was achieved, and building a web app is a breeze for a group of hard-working minds.'
     },
     {
         id: 3,
         image: 'https://images.unsplash.com/photo-1657624394328-a2ec199a5edf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTI2MTk3MA&ixlib=rb-1.2.1&q=80&w=1080',
-        heading: 'Experts',
-        content: 'We\'re good at building beautiful and powerful web apps.'
+        heading: 'Outsourcing',
+        content: 'We\'re good at building beautiful and powerful web apps. We ship you to your destination.'
     },
   ];
 
@@ -66,39 +67,43 @@ const Home = () => {
             </AppBar>
             <main>
                 <Container sx={{ py: 8 }} maxWidth="md">
-                <Introduction />
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map(({id, image,heading, content}) => (
-              <Grid item key={id} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
-                    image={image}
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {heading}
-                    </Typography>
-                    <Typography>
-                      {content}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+                    <Introduction />
+                    {/* End hero unit */}
+                    <Grid container spacing={4}>
+                        {cards.map(({id, image,heading, content}) => (
+                        <Grid item key={id} xs={12} sm={6} md={4}>
+                            <Card
+                            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                            >
+                            <CardMedia
+                                component="img"
+                                sx={{
+                                // 16:9
+                                pt: '56.25%',
+                                }}
+                                image={image}
+                                alt="random"
+                            />
+                            <CardContent sx={{ flexGrow: 1 }}>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                {heading}
+                                </Typography>
+                                <Typography>
+                                {content}
+                                </Typography>
+                            </CardContent>
+                            </Card>
+                        </Grid>
+                        ))}
+                    </Grid>
+                </Container>
                 <MSForm />
             </main>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
+            <footer>
+                <Box sx={{ bgcolor: 'background.red', p: 6 }} component="footer">
+                    <Copyright sx={{ mt: 8, mb: 4 }} />
+                </Box>
+            </footer>  
         </ThemeProvider>
     )
 }
