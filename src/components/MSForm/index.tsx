@@ -1,29 +1,15 @@
 import {useEffect, useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Feedback from '@mui/icons-material/Feedback';
+import AddCommentIcon from '@mui/icons-material/AddComment';
 import {onFirstNameChange, onLastNameChange,onEmailChange,onCommentsChange, handleSubmit, validateForm} from '../../utils'
 import Toast from '../Toast'
 
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © MicroSun IT '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const theme = createTheme();
-
-export default function SignIn() {
+export default function MSForm() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -56,9 +42,7 @@ const formData = {
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <CssBaseline />
         <Toast openToast={openToast} setOpenToast={setOpenToast} success={submitSuccess} message={validationMsg}/>
         <Box
           sx={{
@@ -69,7 +53,7 @@ const formData = {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <Feedback />
+            <AddCommentIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             We&apos;d like to hear from you.
@@ -137,8 +121,6 @@ const formData = {
               Submit
             </Button>
           </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
   );
 }

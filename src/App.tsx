@@ -1,13 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 
-import MSForm from './components/MSForm'
+
 import ListComponent from './components/ListComponent'
+import Home from './components/Home'
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<MSForm />} />
+        <Route path="/" element={<Home />} />
         <Route path="/admin/jian" element={<ListComponent />} />
       </Routes>
     </div>
