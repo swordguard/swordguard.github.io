@@ -37,19 +37,19 @@ function Copyright(props: any) {
         id: 1,
         image: 'https://images.unsplash.com/photo-1657517120264-efff2a7e8af0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTI2MTk5OA&ixlib=rb-1.2.1&q=80&w=1080',
         heading: 'Agility',
-        content: 'We\'re small but agile and ambitious.',
+        content: 'We\'re small but agile and ambitious. We break down big one into small pieces and delivery it to you one by one.',
     },
     {
         id: 2,
         image: 'https://images.unsplash.com/photo-1658781303736-e95b8db69bb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTI2MTg5Mw&ixlib=rb-1.2.1&q=80&w=1080',
-        heading: 'Atitude',
+        heading: 'Attitude',
         content: 'Landing on the moon was achieved, and building a web app is a breeze for a group of hard-working minds.'
     },
     {
         id: 3,
         image: 'https://images.unsplash.com/photo-1657624394328-a2ec199a5edf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1OTI2MTk3MA&ixlib=rb-1.2.1&q=80&w=1080',
         heading: 'Outsourcing',
-        content: 'We\'re good at building beautiful and powerful web apps. We ship you to your destination.'
+        content: 'We\'re good at building beautiful and powerful web apps, and we ship you to your destination.'
     },
   ];
 

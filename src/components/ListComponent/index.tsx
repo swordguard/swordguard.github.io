@@ -64,6 +64,12 @@ function ListComponent() {
     setToBeDeleted('')
   };
 
+  if (isLoading) {
+    return <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+      <CircularProgress />
+    </Box>
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -76,10 +82,8 @@ function ListComponent() {
             <TableCell align="right">Action</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {isLoading ? <Box sx={{ display: 'flex' }}>
-            <CircularProgress />
-          </Box> : feedbackList.map((row: any) => (
+          <TableBody>
+            {feedbackList.map((row: any) => (
             <TableRow
               key={row.backupId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
