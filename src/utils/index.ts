@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { FEEDBACK_ENDPOINT } from '../constants/constants'
+import validationFormCopy from '../constants/form/validation'
 
 export const onFirstNameChange = (e: any, setFirstName: any) => {
     setFirstName(e.target.value)
@@ -30,9 +31,9 @@ export const onCommentsChange = (e: any, setFirstName: any) => {
 }
 
 export const handleSubmit = (formData: any, setToastOpen: any, setSubmitSuccess: any, 
-    setPosting: any, {formErrors, setFormErrors}: any,
+    setPosting: any, {formErrors, setFormErrors, lan}: any,
     setValidationMsg:any, e: any) => {
-       if(!validateForm({formData, formErrors, setFormErrors})) {
+       if(!validateForm({formData, formErrors, setFormErrors, lan})) {
         return
        }
   e.preventDefault()
@@ -51,13 +52,18 @@ export const handleSubmit = (formData: any, setToastOpen: any, setSubmitSuccess:
   })
 }
 
-export const validateForm = ({formData, formErrors, setFormErrors}: any): boolean => {
+interface TypeProps {
+    key: string
+}
+
+export const validateForm = ({formData, formErrors, setFormErrors, lan}: any): boolean => {
     const newErrors = Object.keys(formData).reduce((accu, curr) => {
         let newError
         const value = formData[curr]
         if (value.trim().length === 0) {
             newError = {
-                [curr]: 'required'
+                // @ts-ignore
+                [curr]: validationFormCopy[curr][lan as any]
             }
         } else {
             delete formErrors[curr]
@@ -66,7 +72,8 @@ export const validateForm = ({formData, formErrors, setFormErrors}: any): boolea
         if (curr === 'email') {
             if (!validateEmail(value.trim())) {
                 newError = {
-                    [curr]: 'incorrect email format'
+                    // @ts-ignore
+                    [curr]: validationFormCopy[curr][lan]
                 }
                 
             }

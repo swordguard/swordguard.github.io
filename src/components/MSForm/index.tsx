@@ -11,8 +11,13 @@ import {
     onFirstNameBlur,
     onLastNameChange,onEmailChange,onCommentsChange, handleSubmit} from '../../utils'
 import Toast from '../Toast'
+import formCopy from '../../constants/form/form'
 
-export default function MSForm() {
+interface Props {
+  lan: string
+}
+
+export default function MSForm({lan}: Props) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -50,14 +55,14 @@ const formData = {
             <AddCommentIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            We&apos;d like to hear from you.
+            {formCopy.title[lan as keyof typeof formCopy.firstName]}
           </Typography>
           <TextField
           required
               margin="normal"
               fullWidth
               id="firstName"
-              label="Frist Name"
+              label={formCopy.firstName[lan as keyof typeof formCopy.firstName]}
               name="firstName"
               onChange={(e) => onFirstNameChange(e, setFirstName)}
               onBlur={() => onFirstNameBlur(formData,formErrors, setFormErrors)}
@@ -70,7 +75,7 @@ const formData = {
               margin="normal"
               fullWidth
               id="lastName"
-              label="Last Name"
+              label={formCopy.lastName[lan as keyof typeof formCopy.firstName]}
               name="lastName"
               value={lastName}
               onChange={(e) => onLastNameChange(e, setLastName)}
@@ -83,7 +88,7 @@ const formData = {
               margin="normal"
               fullWidth
               id="email"
-              label="Email Address"
+              label={formCopy.email[lan as keyof typeof formCopy.firstName]}
               name="email"
               autoComplete="email"
               value={email}
@@ -97,7 +102,7 @@ const formData = {
                 margin="normal"
                 id="comments"
                 name="comments"
-                label="Comments"
+                label={formCopy.comments[lan as keyof typeof formCopy.firstName]}
                 fullWidth
                 multiline
                 maxRows={6}
@@ -114,7 +119,7 @@ const formData = {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               disabled={posting}
-              onClick={(e) => handleSubmit(formData, setOpenToast, setSubmitSuccess, setPosting, {formErrors, setFormErrors}, setValidationMsg,e)}
+              onClick={(e) => handleSubmit(formData, setOpenToast, setSubmitSuccess, setPosting, {formErrors, setFormErrors, lan}, setValidationMsg,e)}
             >
               Submit
             </Button>
